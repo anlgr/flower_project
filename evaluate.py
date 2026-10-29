@@ -1,12 +1,20 @@
-import os, sys, subprocess
+import argparse
+import os
+import subprocess
+import sys
+import time
+import warnings
 
-_venv_py = os.path.join(os.path.dirname(os.path.abspath(__file__)), "venv", "Scripts", "python.exe")
-if os.path.exists(_venv_py) and os.path.normcase(sys.executable) != os.path.normcase(_venv_py):
-    sys.exit(subprocess.call([_venv_py] + sys.argv))
-
-import time, argparse, warnings, torch, timm
-from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
+try:
+    import timm
+    import torch
+    from torch.utils.data import DataLoader
+    from torchvision import datasets, transforms
+except ImportError:
+    _venv_py = os.path.join(os.path.dirname(os.path.abspath(__file__)), "venv", "Scripts", "python.exe")
+    if os.path.exists(_venv_py) and os.path.normcase(sys.executable) != os.path.normcase(_venv_py):
+        sys.exit(subprocess.call([_venv_py] + sys.argv))
+    raise
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
