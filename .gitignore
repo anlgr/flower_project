@@ -1,0 +1,12 @@
+﻿venv/
+.cache/
+__pycache__/
+flower_data/
+flower-competition/
+jpeg-192x192/
+runs/
+*.tar.gz
+*.zip
+*.pth
+*.pt
+*.h5
